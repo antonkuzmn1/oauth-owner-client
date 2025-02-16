@@ -53,9 +53,6 @@ const Authorization = () => {
                 <h2 className="text-2xl font-bold text-center mb-6">Authorization</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-black">
-                            Username
-                        </label>
                         <input
                             type="text"
                             id="username"
@@ -67,9 +64,6 @@ const Authorization = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                            Password
-                        </label>
                         <input
                             type="password"
                             id="password"
