@@ -30,7 +30,7 @@ export const Dialog: React.FC<DialogProps> = ({title, message, children, buttons
                     </div>
                 </div>
                 {message &&
-                    <p className="mb-6">{message}</p>
+                    <p className={'px-4 pt-4'}>{message}</p>
                 }
                 <div className="space-y-4 p-4">{children}</div>
                 <div className="border-t h-8 border-gray-300 flex justify-between items-center">

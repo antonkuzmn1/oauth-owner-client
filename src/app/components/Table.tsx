@@ -1,4 +1,5 @@
 import {dateToString} from "../../utils/formatDate.ts";
+import {Add, Delete, Edit, FilterAlt} from "@mui/icons-material";
 
 type TypeField = 'String' | 'Integer' | 'Boolean' | 'Date';
 
@@ -12,16 +13,52 @@ interface TableHeaders<Field> {
 interface TableProps<T> {
     tableHeaders: TableHeaders<T>[];
     rows: T[]
+    openFilterDialog?: () => void;
+    openCreateDialog?: () => void;
+    openUpdateDialog?: (item: T) => void;
+    openDeleteDialog?: (item: T) => void;
 }
 
 
-const Table = <T extends {}>({tableHeaders, rows}: TableProps<T>) => {
+const Table = <T extends {}>({
+                                 tableHeaders,
+                                 rows,
+                                 openFilterDialog,
+                                 openDeleteDialog,
+                                 openUpdateDialog,
+                                 openCreateDialog,
+                             }: TableProps<T>) => {
     return (
         <div className={'p-4 w-fit mx-auto'}>
             <div className={'bg-amber-200 mb-15'}>
                 <table className={'sticky top-0'}>
                     <thead>
                     <tr>
+                        {(openFilterDialog || openCreateDialog || openUpdateDialog || openDeleteDialog) && (
+                            <td
+                                style={{
+                                    minWidth: ((openFilterDialog && openCreateDialog) || (openUpdateDialog && openDeleteDialog)) ? '66px' : '33px',
+                                }}
+                                className="bg-white border border-gray-300"
+                            >
+                                <div className={'flex'}>
+                                    {openFilterDialog && (
+                                        <button
+                                            onClick={openFilterDialog}
+                                            className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                            children={<FilterAlt/>}
+                                        />
+                                    )}
+                                    {openCreateDialog && (
+                                        <button
+                                            onClick={openCreateDialog}
+                                            className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                            children={<Add/>}
+                                        />
+                                    )}
+                                </div>
+                            </td>
+                        )}
                         {tableHeaders.map((tableHeader: TableHeaders<T>, index: number) => (
                             <td
                                 key={index}
@@ -39,16 +76,33 @@ const Table = <T extends {}>({tableHeaders, rows}: TableProps<T>) => {
                 </table>
                 <table className={'mt-[-1px]'}>
                     <tbody>
-                    {[...Array(200).keys()].map((item) =>
-                        <tr key={item}>
-                            <td className={'bg-white border border-gray-300 p-1'}>{item}</td>
-                            <td className={'bg-white border border-gray-300 p-1'}>{item}</td>
-                            <td className={'bg-white border border-gray-300 p-1'}>{item}</td>
-                            <td className={'bg-white border border-gray-300 p-1'}>{item}</td>
-                        </tr>
-                    )}
                     {rows.map((item: T, index: number) => (
                         <tr key={index}>
+                            {(openFilterDialog || openCreateDialog || openUpdateDialog || openDeleteDialog) && (
+                                <td
+                                    style={{
+                                        minWidth: ((openFilterDialog && openCreateDialog) || (openUpdateDialog && openDeleteDialog)) ? '66px' : '33px',
+                                    }}
+                                    className="bg-white border border-gray-300"
+                                >
+                                    <div className={'flex'}>
+                                        {openUpdateDialog && (
+                                            <button
+                                                onClick={() => openUpdateDialog(item)}
+                                                className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                                children={<Edit/>}
+                                            />
+                                        )}
+                                        {openDeleteDialog && (
+                                            <button
+                                                onClick={() => openDeleteDialog(item)}
+                                                className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                                children={<Delete/>}
+                                            />
+                                        )}
+                                    </div>
+                                </td>
+                            )}
                             {tableHeaders.map((tableHeader: TableHeaders<T>, index: number) => {
                                 if (tableHeader.type === 'Integer') {
                                     return (
@@ -83,7 +137,7 @@ const Table = <T extends {}>({tableHeaders, rows}: TableProps<T>) => {
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
                                             className={'bg-white border border-gray-300 p-1'}
                                         >
-                                            {dateToString(new Date(item[tableHeader.field] as string))}
+                                            {item[tableHeader.field] ? dateToString(new Date(item[tableHeader.field] as string)) : ''}
                                         </td>
                                     )
                                 } else {
