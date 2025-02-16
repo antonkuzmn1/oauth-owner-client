@@ -97,7 +97,8 @@ const PageOwners: React.FC = () => {
         try {
             const response = await api.get("/owner");
             console.log(response);
-            // localDispatch({type: "SET_NOTES", payload: notesResponse.data});
+            localDispatch({type: "SET_ITEMS", payload: response.data});
+            console.log(state.items);
         } catch (error: unknown) {
             if (error instanceof Error) {
                 dispatch(setAppError(error.message));
