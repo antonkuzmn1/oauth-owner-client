@@ -39,7 +39,7 @@ const Table = <T extends {}>({tableHeaders, rows}: TableProps<T>) => {
                 </table>
                 <table className={'mt-[-1px]'}>
                     <tbody>
-                    {[...Array(201).keys()].map((item) =>
+                    {[...Array(200).keys()].map((item) =>
                         <tr key={item}>
                             <td className={'bg-white border border-gray-300 p-1'}>{item}</td>
                             <td className={'bg-white border border-gray-300 p-1'}>{item}</td>
