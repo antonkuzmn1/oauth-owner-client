@@ -1,6 +1,7 @@
 import {AppDispatch, RootState} from "../../utils/store.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {setAppError} from "../../slices/appSlice.ts";
+import {Close} from "@mui/icons-material";
 
 const ErrorMessage = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -10,27 +11,26 @@ const ErrorMessage = () => {
     if (error.length === 0) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white w-full max-w-md rounded-lg shadow-lg">
-                <div className="flex justify-between items-center p-4">
-                    <h2 className="text-lg font-bold">Error</h2>
-                    <button
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+            <div className="border border-gray-300 bg-white max-w-md w-full">
+                <div className={'border-b h-8 border-gray-300 flex justify-between items-center'}>
+                    <h2 className={'h-full flex items-center justify-center px-2'}>
+                        Error
+                    </h2>
+                    <div
+                        className={'h-full flex items-center justify-center w-8 cursor-pointer hover:bg-gray-300 transition-colors duration-200'}
                         onClick={() => dispatch(setAppError(''))}
-                        className="text-gray-400 hover:text-gray-600"
                     >
-                        ✕
-                    </button>
+                        <Close/>
+                    </div>
                 </div>
-                <div className="p-4">
-                    <p>{error}</p>
-                </div>
-                <div className="flex justify-end p-4">
+                <div className="space-y-4 p-4">{error}</div>
+                <div className="border-t h-8 border-gray-300 flex justify-between items-center">
                     <button
+                        className={'h-full w-full cursor-pointer hover:bg-gray-300 transition-colors duration-200'}
                         onClick={() => dispatch(setAppError(''))}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-                    >
-                        Close
-                    </button>
+                        children={'Close'}
+                    />
                 </div>
             </div>
         </div>

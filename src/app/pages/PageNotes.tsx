@@ -256,10 +256,11 @@ const DialogActions: React.FC<DialogActionsProps> = ({type, closeDialog, action,
                     title={"Create Note"}
                     message={"Fill in the details to create a new note"}
                     buttons={[
-                        {text: "Cancel", onClick: closeDialog, color: "gray"},
-                        {text: "Create", onClick: action, color: "blue"},
-                    ]}
-                >
+                        {text: "Cancel", onClick: closeDialog},
+                        {text: "Create", onClick: action},
+                    ]} close={function (): void {
+                    throw new Error("Function not implemented.");
+                }}                >
                     {dialogFields}
                 </Dialog>
             );
@@ -269,10 +270,11 @@ const DialogActions: React.FC<DialogActionsProps> = ({type, closeDialog, action,
                     title={"Edit Note"}
                     message={"Fill in the details to edit the note"}
                     buttons={[
-                        {text: "Cancel", onClick: closeDialog, color: "gray"},
-                        {text: "Edit", onClick: action, color: "blue"},
-                    ]}
-                >
+                        {text: "Cancel", onClick: closeDialog},
+                        {text: "Edit", onClick: action},
+                    ]} close={function (): void {
+                    throw new Error("Function not implemented.");
+                }}                >
                     {dialogFields}
                 </Dialog>
             );
@@ -282,10 +284,11 @@ const DialogActions: React.FC<DialogActionsProps> = ({type, closeDialog, action,
                     title={"Delete Note"}
                     message={'Are you sure you want to delete this note?'}
                     buttons={[
-                        {text: "Cancel", onClick: closeDialog, color: "gray"},
-                        {text: "Delete", onClick: action, color: "red"},
-                    ]}
-                />
+                        {text: "Cancel", onClick: closeDialog},
+                        {text: "Delete", onClick: action},
+                    ]} close={function (): void {
+                    throw new Error("Function not implemented.");
+                }}                />
             );
         default:
             return null
