@@ -3,6 +3,8 @@ import {AppDispatch} from "../../utils/store.ts";
 import {useDispatch} from "react-redux";
 import {setAppError, setAppLoading} from "../../slices/appSlice.ts";
 import {api} from "../../utils/api.ts";
+import {dateToString} from "../../utils/formatDate.ts";
+import Table from "../components/Table.tsx";
 
 interface Item {
     id: number;
@@ -88,6 +90,22 @@ const reducer = (state: State, action: Action): State => {
     }
 }
 
+type TypeField = 'String' | 'Integer' | 'Boolean' | 'Date';
+
+interface TableHeaders {
+    text: string,
+    field: keyof Item,
+    width: string,
+    type: TypeField,
+}
+
+const tableHeaders: TableHeaders[] = [
+    {text: 'ID', field: 'id', width: '50px', type: 'Integer'},
+    {text: 'Username', field: 'username', width: '200px', type: 'String'},
+    {text: 'Created at', field: 'created_at', width: '150px', type: 'Date'},
+    {text: 'Updated at', field: 'updated_at', width: '150px', type: 'Date'},
+]
+
 const PageOwners: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
     const [state, localDispatch] = useReducer(reducer, initialState);
@@ -95,10 +113,8 @@ const PageOwners: React.FC = () => {
     const getItems = useCallback(async () => {
         dispatch(setAppLoading(true));
         try {
-            const response = await api.get("/owner");
-            console.log(response);
+            const response = await api.get("/owner/");
             localDispatch({type: "SET_ITEMS", payload: response.data});
-            console.log(state.items);
         } catch (error: unknown) {
             if (error instanceof Error) {
                 dispatch(setAppError(error.message));
@@ -114,10 +130,75 @@ const PageOwners: React.FC = () => {
         getItems().then();
     }, [getItems]);
 
+    const openDialog = useCallback((dialog: "create" | "update" | "delete", item?: Item) => {
+        localDispatch({type: "OPEN_DIALOG", payload: {dialog, item}});
+    }, []);
+
+    const closeDialog = useCallback(() => {
+        localDispatch({type: "CLOSE_DIALOG"});
+    }, []);
+
+    const createItem = useCallback(async () => {
+        dispatch(setAppLoading(true));
+        try {
+            const response = await api.post("/owner/", {
+                username: state.currentItem.username,
+                password: state.currentItem.password,
+            });
+            localDispatch({type: "ADD_ITEM", payload: response.data});
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                dispatch(setAppError(error.message));
+            } else {
+                dispatch(setAppError("An unknown error occurred"));
+            }
+        } finally {
+            dispatch(setAppLoading(false));
+        }
+    }, [state.currentItem, dispatch]);
+
+    const editItem = useCallback(async () => {
+        dispatch(setAppLoading(true));
+        try {
+            const response = await api.put(`/owner/${state.currentItem.id}`, {
+                username: state.currentItem.username,
+                password: state.currentItem.password,
+            });
+            localDispatch({type: "UPDATE_ITEM", payload: response.data});
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                dispatch(setAppError(error.message));
+            } else {
+                dispatch(setAppError("An unknown error occurred"));
+            }
+        } finally {
+            dispatch(setAppLoading(false));
+        }
+    }, [state.currentItem, dispatch]);
+
+    const deleteItem = useCallback(async () => {
+        dispatch(setAppLoading(true));
+        try {
+            await api.delete(`/owner/${state.currentItem.id}`);
+            localDispatch({type: "DELETE_ITEM", payload: state.currentItem});
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                dispatch(setAppError(error.message));
+            } else {
+                dispatch(setAppError("An unknown error occurred"));
+            }
+        } finally {
+            dispatch(setAppLoading(false));
+        }
+    }, [state.currentItem, dispatch]);
+
     return (
-        <div>
-            <h1>Owners</h1>
-        </div>
+        <>
+            <Table
+                tableHeaders={tableHeaders}
+                rows={state.items}
+            />
+        </>
     )
 }
 
