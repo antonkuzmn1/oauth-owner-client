@@ -146,7 +146,7 @@ const PageMe: React.FC = () => {
     return (
         <>
             <div className="p-4 flex justify-center">
-                <div className={'max-w-xl w-full gap-4 flex flex-col'}>
+                <div className={'max-w-xl w-full gap-2 flex flex-col'}>
                     <Input
                         label={'ID'}
                         type={'number'}
@@ -175,15 +175,15 @@ const PageMe: React.FC = () => {
                         value={state.data.updated_at ? dateToString(new Date(state.data.updated_at)) : ''}
                         readOnly={true}
                     />
-                    <div className="flex w-full h-8 gap-4">
+                    <div className="flex w-full h-12 gap-2">
                         <button
-                            className="border border-gray-300 flex items-center justify-center w-full hover:bg-gray-300 transition-colors duration-200"
+                            className="border border-gray-300 flex items-center justify-center w-full hover:bg-gray-300 transition-colors duration-200 text-gray-600"
                             onClick={logout}
                         >
                             Log out
                         </button>
                         <button
-                            className="border border-gray-300 flex items-center justify-center w-full hover:bg-gray-300 transition-colors duration-200"
+                            className="border border-gray-300 flex items-center justify-center w-full hover:bg-gray-300 transition-colors duration-200 text-gray-600"
                             onClick={() => openDialog('update', {password: '', passwordConfirmation: ''})}
                         >
                             Change password

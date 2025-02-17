@@ -45,14 +45,14 @@ const Table = <T extends {}>({
                                     {openFilterDialog && (
                                         <button
                                             onClick={openFilterDialog}
-                                            className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                            className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
                                             children={<FilterAlt/>}
                                         />
                                     )}
                                     {openCreateDialog && (
                                         <button
                                             onClick={openCreateDialog}
-                                            className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                            className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
                                             children={<Add/>}
                                         />
                                     )}
@@ -66,7 +66,7 @@ const Table = <T extends {}>({
                                     maxWidth: tableHeader.width,
                                     minWidth: tableHeader.width,
                                 }}
-                                className={'bg-white border border-gray-300 p-1'}
+                                className={'text-gray-700 bg-white border border-gray-300 p-1'}
                             >
                                 {tableHeader.text}
                             </td>
@@ -89,14 +89,14 @@ const Table = <T extends {}>({
                                         {openUpdateDialog && (
                                             <button
                                                 onClick={() => openUpdateDialog(item)}
-                                                className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                                className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
                                                 children={<Edit/>}
                                             />
                                         )}
                                         {openDeleteDialog && (
                                             <button
                                                 onClick={() => openDeleteDialog(item)}
-                                                className={'hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                                className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
                                                 children={<Delete/>}
                                             />
                                         )}
@@ -108,7 +108,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
                                         >
                                             {String(item[tableHeader.field])}
                                         </td>
@@ -117,7 +117,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
                                         >
                                             {String(item[tableHeader.field])}
                                         </td>
@@ -126,7 +126,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
                                         >
                                             {item[tableHeader.field] ? 'True' : 'False'}
                                         </td>
@@ -135,7 +135,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
                                         >
                                             {item[tableHeader.field] ? dateToString(new Date(item[tableHeader.field] as string)) : ''}
                                         </td>
@@ -144,7 +144,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
                                         >
                                             Error!
                                         </td>

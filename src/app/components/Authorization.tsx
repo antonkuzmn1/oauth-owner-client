@@ -51,12 +51,12 @@ const Authorization = () => {
         <div className="fixed z-50 inset-0 flex items-center justify-center h-screen bg-white">
             <div className="p-6 w-full max-w-sm">
                 <h2 className="text-2xl font-bold text-center mb-6">Authorization</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-2">
                     <div>
                         <input
                             type="text"
                             id="username"
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            className="block w-full px-3 h-12 text-gray-700 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Enter username"
@@ -67,7 +67,7 @@ const Authorization = () => {
                         <input
                             type="password"
                             id="password"
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            className="block w-full px-3 h-12 text-gray-700 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter password"
@@ -76,7 +76,7 @@ const Authorization = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-white hover:bg-gray-300 border border-gray-300 text-black py-2 px-4 transition duration-300"
+                        className="w-full bg-white hover:bg-gray-300 border border-gray-300 text-gray-700 h-12 px-4 transition duration-300"
                     >
                         Submit
                     </button>
