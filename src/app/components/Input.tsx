@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
 
     return (
         <div className={'border border-gray-300 h-12 flex'}>
-            <label className={'border-r border-gray-300 min-w-30 flex items-center justify-center text-gray-700'}>
+            <label className={'border-r border-gray-300 min-w-36 flex items-center justify-center text-gray-700'}>
                 {props.label}
             </label>
             <input

@@ -119,7 +119,7 @@ const Table = <T extends {}>({
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
                                             className={'text-gray-700 bg-white border border-gray-300 p-2'}
                                         >
-                                            {String(item[tableHeader.field])}
+                                            {item[tableHeader.field] ? String(item[tableHeader.field]) : ''}
                                         </td>
                                     )
                                 } else if (tableHeader.type === 'Boolean') {

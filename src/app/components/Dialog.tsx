@@ -17,7 +17,7 @@ export interface DialogButton {
 export const Dialog: React.FC<DialogProps> = ({title, message, children, buttons, close}) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-            <div className="border border-gray-300 bg-white max-w-md w-full">
+            <div className="border border-gray-300 bg-white max-w-4xl w-full">
                 <div className={'border-b h-12 border-gray-300 flex justify-between items-center'}>
                     <h2 className={'h-full flex items-center justify-center px-2 text-gray-700'}>
                         {title}
@@ -29,10 +29,12 @@ export const Dialog: React.FC<DialogProps> = ({title, message, children, buttons
                         <Close/>
                     </div>
                 </div>
-                {message &&
-                    <p className={'px-4 pt-4 text-gray-700'}>{message}</p>
-                }
-                <div className="space-y-2 p-2">{children}</div>
+                <div className="overflow-y-auto max-h-[calc(100vh-104px)]">
+                    {message &&
+                        <p className={'px-4 pt-4 text-gray-700'}>{message}</p>
+                    }
+                    <div className="space-y-2 p-2">{children}</div>
+                </div>
                 <div className="border-t h-12 border-gray-300 flex justify-between items-center">
                     {buttons && buttons.map((button, index) => (
                         <button
