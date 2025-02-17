@@ -30,14 +30,14 @@ const Table = <T extends {}>({
                              }: TableProps<T>) => {
     return (
         <div className={'p-4 w-fit mx-auto'}>
-            <div className={'bg-amber-200 mb-15'}>
+            <div className={'mb-15'}>
                 <table className={'sticky top-0'}>
                     <thead>
                     <tr>
                         {(openFilterDialog || openCreateDialog || openUpdateDialog || openDeleteDialog) && (
                             <td
                                 style={{
-                                    minWidth: ((openFilterDialog && openCreateDialog) || (openUpdateDialog && openDeleteDialog)) ? '66px' : '33px',
+                                    minWidth: ((openFilterDialog && openCreateDialog) || (openUpdateDialog && openDeleteDialog)) ? '96px' : '48px',
                                 }}
                                 className="bg-white border border-gray-300"
                             >
@@ -45,14 +45,14 @@ const Table = <T extends {}>({
                                     {openFilterDialog && (
                                         <button
                                             onClick={openFilterDialog}
-                                            className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                            className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-12 w-full'}
                                             children={<FilterAlt/>}
                                         />
                                     )}
                                     {openCreateDialog && (
                                         <button
                                             onClick={openCreateDialog}
-                                            className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                            className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-12 w-full'}
                                             children={<Add/>}
                                         />
                                     )}
@@ -66,7 +66,7 @@ const Table = <T extends {}>({
                                     maxWidth: tableHeader.width,
                                     minWidth: tableHeader.width,
                                 }}
-                                className={'text-gray-700 bg-white border border-gray-300 p-1'}
+                                className={'text-gray-700 bg-white border border-gray-300 p-2'}
                             >
                                 {tableHeader.text}
                             </td>
@@ -81,22 +81,22 @@ const Table = <T extends {}>({
                             {(openFilterDialog || openCreateDialog || openUpdateDialog || openDeleteDialog) && (
                                 <td
                                     style={{
-                                        minWidth: ((openFilterDialog && openCreateDialog) || (openUpdateDialog && openDeleteDialog)) ? '66px' : '33px',
+                                        minWidth: ((openFilterDialog && openCreateDialog) || (openUpdateDialog && openDeleteDialog)) ? '96px' : '48px',
                                     }}
-                                    className="bg-white border border-gray-300"
+                                    className="bg-white border border-gray-300 h-12"
                                 >
                                     <div className={'flex'}>
                                         {openUpdateDialog && (
                                             <button
                                                 onClick={() => openUpdateDialog(item)}
-                                                className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                                className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-12 w-full'}
                                                 children={<Edit/>}
                                             />
                                         )}
                                         {openDeleteDialog && (
                                             <button
                                                 onClick={() => openDeleteDialog(item)}
-                                                className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-8 w-full'}
+                                                className={'text-gray-700 hover:bg-gray-300 transition-colors duration-200 h-12 w-full'}
                                                 children={<Delete/>}
                                             />
                                         )}
@@ -108,7 +108,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-2'}
                                         >
                                             {String(item[tableHeader.field])}
                                         </td>
@@ -117,7 +117,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-2'}
                                         >
                                             {String(item[tableHeader.field])}
                                         </td>
@@ -126,7 +126,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-2'}
                                         >
                                             {item[tableHeader.field] ? 'True' : 'False'}
                                         </td>
@@ -135,7 +135,7 @@ const Table = <T extends {}>({
                                     return (
                                         <td key={index}
                                             style={{maxWidth: tableHeader.width, minWidth: tableHeader.width}}
-                                            className={'text-gray-700 bg-white border border-gray-300 p-1'}
+                                            className={'text-gray-700 bg-white border border-gray-300 p-2'}
                                         >
                                             {item[tableHeader.field] ? dateToString(new Date(item[tableHeader.field] as string)) : ''}
                                         </td>

@@ -103,8 +103,8 @@ interface TableHeaders {
 const tableHeaders: TableHeaders[] = [
     {text: 'ID', field: 'id', width: '50px', type: 'Integer'},
     {text: 'Username', field: 'username', width: '200px', type: 'String'},
-    {text: 'Created at', field: 'created_at', width: '150px', type: 'Date'},
-    {text: 'Updated at', field: 'updated_at', width: '150px', type: 'Date'},
+    {text: 'Created at', field: 'created_at', width: '200px', type: 'Date'},
+    {text: 'Updated at', field: 'updated_at', width: '200px', type: 'Date'},
 ]
 
 const PageOwners: React.FC = () => {
